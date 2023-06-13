@@ -1,7 +1,6 @@
 import argparse
 import json
 
-# Task 3: Zapis danych z obiektu do pliku w formacie JSON
 parser = argparse.ArgumentParser(description='Program do konwersji danych obsługujący formaty .xml, .json i .yml (.yaml)')
 parser.add_argument('--input', help='Ścieżka pliku wejściowego')
 parser.add_argument('--output', help='Ścieżka pliku wyjściowego')
