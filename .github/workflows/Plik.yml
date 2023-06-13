@@ -1,6 +1,6 @@
-wykonaj to na tym kodzie name: Plik
+name: Plik 
 
-on:
+on:  
   push:
     branches:
       - main
