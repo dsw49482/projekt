@@ -23,6 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pyinstaller
+          pip install pyyaml
           .\installResources.ps1
 
       - name: Build executable
