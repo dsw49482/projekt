@@ -1,1 +1,0 @@
-pyinstaller --onefile "D:\a\projekt\projekt\program.py"
