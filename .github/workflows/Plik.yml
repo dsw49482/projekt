@@ -1,6 +1,6 @@
 name: Plik
 
-on:
+on:  
   push:
     branches:
       - main
@@ -20,12 +20,6 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: Debug info
-        run: |
-          python --version
-          pip --version
-          pyinstaller --version
-
       - name: Install dependencies
         run: |
           pip install pyinstaller
@@ -34,11 +28,7 @@ jobs:
       - name: Build executable
         run: pyinstaller --onefile program.py
 
-      - name: Display dist folder contents
-        run: dir dist
-
-      - name: Run program
-        run: |
-          cd dist
-          program.exe
-
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: program-exe
