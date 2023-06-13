@@ -1,6 +1,6 @@
-name: Plik 
+name: Plik
 
-on:  
+on:
   push:
     branches:
       - main
@@ -25,11 +25,16 @@ jobs:
           pip install pyinstaller
           .\installResources.ps1
 
+      - name: Display installed packages
+        run: pip list
+
       - name: Build executable
         run: pyinstaller --onefile program.py
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: program-exe
-          path: dist/program.exe
+      - name: Display dist folder contents
+        run: dir dist
+
+      - name: Run program
+        run: |
+        cd dist
+        program.exe
