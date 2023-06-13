@@ -1,6 +1,6 @@
 name: Plik
 
-on:
+on:  
   push:
     branches:
       - main
@@ -23,18 +23,12 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pyinstaller
-          pip install pyyaml
           .\installResources.ps1
 
       - name: Build executable
         run: pyinstaller --onefile program.py
 
-      - name: Run program
-        run: dist/program.exe input_file.txt output_file.txt
-
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: program-exe
-          path: dist/program.exe
-
