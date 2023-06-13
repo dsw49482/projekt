@@ -1,6 +1,6 @@
 name: Plik
 
-on:  
+on:
   push:
     branches:
       - main
@@ -27,6 +27,9 @@ jobs:
 
       - name: Build executable
         run: pyinstaller --onefile program.py
+
+      - name: Run program
+        run: dist/program.exe
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
