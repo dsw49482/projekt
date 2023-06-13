@@ -13,20 +13,23 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Setup Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v2
         with:
           python-version: 3.9
+
+      - name: Debug info
+        run: |
+          python --version
+          pip --version
+          pyinstaller --version
 
       - name: Install dependencies
         run: |
           pip install pyinstaller
           .\installResources.ps1
-
-      - name: Display installed packages
-        run: pip list
 
       - name: Build executable
         run: pyinstaller --onefile program.py
@@ -36,5 +39,6 @@ jobs:
 
       - name: Run program
         run: |
-        cd dist
-        program.exe
+          cd dist
+          program.exe
+
