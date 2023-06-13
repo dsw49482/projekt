@@ -1,6 +1,6 @@
-name: Plik 
+name: Plik
 
-on:  
+on:
   push:
     branches:
       - main
@@ -10,10 +10,15 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
 
       - name: Setup Python
         uses: actions/setup-python@v2
