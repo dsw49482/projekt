@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pyinstaller
-          pip install -r requirements.txt  # Instaluje zależności projektu
+          pip install -r requirements.txt  # Installs project dependencies
           .\installResources.ps1
 
       - name: Build executable
@@ -33,4 +33,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: program-exe
-          path: dist/program.exe 
+          path: dist/program.exe
