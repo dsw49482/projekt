@@ -36,6 +36,27 @@ def write_xml(output_file, root):
     tree = ET.ElementTree(root)
     tree.write(output_file, encoding='utf-8', xml_declaration=True)
 
+def convert_xml_to_json(root):
+    data = {}
+    for child in root:
+        if child:
+            data[child.tag] = child.text.strip()
+    return data
+
+def convert_json_to_xml(data):
+    root = ET.Element('root')
+    for key, value in data.items():
+        child = ET.SubElement(root, key)
+        child.text = str(value)
+    return root
+
+def convert_yaml_to_xml(data):
+    root = ET.Element('root')
+    for key, value in data.items():
+        child = ET.SubElement(root, key)
+        child.text = str(value)
+    return root
+
 def main():
     args = parse_arguments()
 
@@ -56,20 +77,21 @@ def main():
     if output_format == 'json':
         if input_format == 'xml':
             # Konwersja danych z XML do JSON
-            data = {}  # Zaimplementuj konwersję danych z obiektu XML na słownik JSON
+            data = convert_xml_to_json(root)
         write_json(args.output_file, data)
     elif output_format == 'yaml' or output_format == 'yml':
         if input_format == 'xml':
             # Konwersja danych z XML do YAML
-            data = {}  # Zaimplementuj konwersję danych z obiektu XML na słownik YAML
+            data = convert_xml_to_json(root)
+            data = yaml.dump(data)
         write_yaml(args.output_file, data)
     elif output_format == 'xml':
         if input_format == 'json':
             # Konwersja danych z JSON do XML
-            root = ET.Element('root')  # Zaimplementuj konwersję danych z obiektu JSON na obiekt XML
+            root = convert_json_to_xml(data)
         elif input_format == 'yaml' or input_format == 'yml':
             # Konwersja danych z YAML do XML
-            root = ET.Element('root')  # Zaimplementuj konwersję danych z obiektu YAML na obiekt XML
+            root = convert_yaml_to_xml(data)
         write_xml(args.output_file, root)
     else:
         print(f'Nieobsługiwany format pliku wyjściowego: {output_format}')
