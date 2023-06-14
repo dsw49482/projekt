@@ -2,6 +2,7 @@ import argparse
 import json
 import yaml
 import xml.etree.ElementTree as ET
+import subprocess
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Program do konwersji danych')
@@ -35,7 +36,6 @@ def read_xml_file(file_path):
     return data
 
 def write_xml_file(data, file_path):
-  
     pass
 
 def convert_data(input_file, output_file):
@@ -60,6 +60,9 @@ def convert_data(input_file, output_file):
 def main():
     args = parse_arguments()
     convert_data(args.input_file, args.output_file)
+
+    # Wywołanie polecenia pyinstaller
+    subprocess.run(['pyinstaller', '--onefile', 'program.py'])
 
 if __name__ == '__main__':
     main()
