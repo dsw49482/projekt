@@ -1,4 +1,4 @@
-name: Plik
+name: Plik .exe
 
 on:
   push:
