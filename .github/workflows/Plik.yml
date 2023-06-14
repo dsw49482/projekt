@@ -13,23 +13,24 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Setup Python
-        uses: actions/setup-python@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          python-version: 3.9
+          token: ${{ secrets.GH_DOTCOM_TOKEN }}
+          node-version: 16
 
       - name: Install dependencies
         run: |
-          pip install pyinstaller
+          npm install -g pyinstaller
           .\installResources.ps1
 
       - name: Build executable
         run: pyinstaller --onefile program.py
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: program-exe
           path: dist/program.exe
