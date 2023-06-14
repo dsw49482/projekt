@@ -1,6 +1,6 @@
-name: Plik 
+name: Plik
 
-on:  
+on:
   push:
     branches:
       - main
@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
